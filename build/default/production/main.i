@@ -4891,11 +4891,19 @@ int main() {
     appliction_intialize();
     uint8 data[6 ]= {1,2,3,4,5,6};
     while(1){
-# 100 "main.c"
-        for(int i =0 ; i<10; i++){
-            SVS_print_pov(&seven_seg, data);
-            _delay((unsigned long)((2000)*(16000000ul/4000.0)));
-        }
+# 102 "main.c"
+            for(uint8 counter = 0; counter<6 ; counter++){
+                data[counter]++;
+                if(data[counter]>9){
+                    data[counter]=0;
+                }
+                SVS_print_pov(&seven_seg, data);
+                _delay((unsigned long)((30)*(16000000ul/4000.0)));
+            }
+
+
+
+
     }
     return (0);
 }
@@ -4903,7 +4911,7 @@ int main() {
 void appliction_intialize(void){
     ADCON0 = 0x00;
     ADCON1 = 0x0F;
-# 120 "main.c"
+# 130 "main.c"
     SVS_initialize(&seven_seg);
 
 

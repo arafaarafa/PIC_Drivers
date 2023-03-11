@@ -78,7 +78,7 @@ SVS_config_t seven_seg ={.SVS_port = PORTD_INDEX,
 
 
 int main() {
-    
+   
     appliction_intialize();
     uint8 data[SVS_MAX_NO ]= {1,2,3,4,5,6};
     while(1){
@@ -97,10 +97,20 @@ int main() {
         motor_stop(&motor_1);
         __delay_ms(5000);*/
         
-        for(int i =0 ; i<10; i++){
-            SVS_print_pov(&seven_seg, data);
-            __delay_ms(2000);
-        }
+        
+            
+            for(uint8 counter = 0; counter<SVS_MAX_NO ; counter++){
+                data[counter]++;
+                if(data[counter]>9){
+                    data[counter]=0;
+                }
+                SVS_print_pov(&seven_seg, data);
+                __delay_ms(30);
+            }
+           
+            
+            
+
     }
     return (EXIT_SUCCESS);
 }

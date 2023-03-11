@@ -43,7 +43,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;ECU_layer/7_SEGMENTS/../../MCAL_layer/GPIO/GPIO.h: 102: Std_ReturnType gpio_port_high_nibble_write_logic(pin_config_t *, uint8);
 [v _gpio_port_high_nibble_write_logic `(uc ~T0 @X0 0 ef2`*S272`uc ]
 "105 ECU_layer/7_SEGMENTS/7_SEGMENTS.c
-[; ;ECU_layer/7_SEGMENTS/7_SEGMENTS.c: 105:                     gpio_pin_write_logic( &temp, GPIO_HIGH);
+[; ;ECU_layer/7_SEGMENTS/7_SEGMENTS.c: 105:                 gpio_pin_write_logic( &temp, GPIO_HIGH);
 [c E2798 0 1 .. ]
 [n E2798 . GPIO_LOW GPIO_HIGH  ]
 "86 ECU_layer/7_SEGMENTS/../../MCAL_layer/GPIO/GPIO.h
@@ -656,85 +656,102 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;ECU_layer/7_SEGMENTS/7_SEGMENTS.c: 98:         else{
 [e :U 291 ]
 {
-"99
-[; ;ECU_layer/7_SEGMENTS/7_SEGMENTS.c: 99:             uint8 svs_counter = 0;
-[v _svs_counter `uc ~T0 @X0 1 a ]
-[e = _svs_counter -> -> 0 `i `uc ]
 "100
 [; ;ECU_layer/7_SEGMENTS/7_SEGMENTS.c: 100:             pin_config_t temp ;
 [v _temp `S272 ~T0 @X0 1 a ]
 "101
-[; ;ECU_layer/7_SEGMENTS/7_SEGMENTS.c: 101:             for(;svs_counter<6; svs_counter++){
+[; ;ECU_layer/7_SEGMENTS/7_SEGMENTS.c: 101:             for(uint8 svs_counter_2 = 0 ;svs_counter_2<6; svs_counter_2++){
 {
-[e $ < -> _svs_counter `i -> 6 `i 293  ]
+[v _svs_counter_2 `uc ~T0 @X0 1 a ]
+[e = _svs_counter_2 -> -> 0 `i `uc ]
+[e $ < -> _svs_counter_2 `i -> 6 `i 293  ]
 [e $U 294  ]
 [e :U 293 ]
 {
-"102
-[; ;ECU_layer/7_SEGMENTS/7_SEGMENTS.c: 102:                 for(int svs_counter_2 = 0 ;svs_counter_2<6; svs_counter_2++){
+"103
+[; ;ECU_layer/7_SEGMENTS/7_SEGMENTS.c: 103:                 temp.port = Seven_SEG->SVS_EN_PINS[svs_counter_2].SVS_en_port;
+[e = . _temp 0 -> . *U + &U . *U _Seven_SEG 2 * -> _svs_counter_2 `ux -> -> # *U &U . *U _Seven_SEG 2 `ui `ux 0 `uc ]
+"104
+[; ;ECU_layer/7_SEGMENTS/7_SEGMENTS.c: 104:                 temp.pin = Seven_SEG->SVS_EN_PINS[svs_counter_2].SVS_en_pin;
+[e = . _temp 1 -> . *U + &U . *U _Seven_SEG 2 * -> _svs_counter_2 `ux -> -> # *U &U . *U _Seven_SEG 2 `ui `ux 1 `uc ]
+"105
+[; ;ECU_layer/7_SEGMENTS/7_SEGMENTS.c: 105:                 gpio_pin_write_logic( &temp, GPIO_HIGH);
+[e ( _gpio_pin_write_logic (2 , &U _temp . `E2798 1 ]
+"106
+[; ;ECU_layer/7_SEGMENTS/7_SEGMENTS.c: 106:             }
+}
+[e ++ _svs_counter_2 -> -> 1 `i `uc ]
+[e $ < -> _svs_counter_2 `i -> 6 `i 293  ]
+[e :U 294 ]
+}
+"107
+[; ;ECU_layer/7_SEGMENTS/7_SEGMENTS.c: 107:             uint8 svs_counter = 0;
+[v _svs_counter `uc ~T0 @X0 1 a ]
+[e = _svs_counter -> -> 0 `i `uc ]
+"108
+[; ;ECU_layer/7_SEGMENTS/7_SEGMENTS.c: 108:             for(;svs_counter<6; svs_counter++){
 {
-[v _svs_counter_2 `i ~T0 @X0 1 a ]
-[e = _svs_counter_2 -> 0 `i ]
-[e $ < _svs_counter_2 -> 6 `i 296  ]
+[e $ < -> _svs_counter `i -> 6 `i 296  ]
 [e $U 297  ]
 [e :U 296 ]
 {
-"103
-[; ;ECU_layer/7_SEGMENTS/7_SEGMENTS.c: 103:                     temp.port = Seven_SEG->SVS_EN_PINS[svs_counter_2].SVS_en_port;
-[e = . _temp 0 -> . *U + &U . *U _Seven_SEG 2 * -> -> _svs_counter_2 `ui `ux -> -> # *U &U . *U _Seven_SEG 2 `ui `ux 0 `uc ]
-"104
-[; ;ECU_layer/7_SEGMENTS/7_SEGMENTS.c: 104:                     temp.pin = Seven_SEG->SVS_EN_PINS[svs_counter_2].SVS_en_pin;
-[e = . _temp 1 -> . *U + &U . *U _Seven_SEG 2 * -> -> _svs_counter_2 `ui `ux -> -> # *U &U . *U _Seven_SEG 2 `ui `ux 1 `uc ]
-"105
-[; ;ECU_layer/7_SEGMENTS/7_SEGMENTS.c: 105:                     gpio_pin_write_logic( &temp, GPIO_HIGH);
-[e ( _gpio_pin_write_logic (2 , &U _temp . `E2798 1 ]
-"106
-[; ;ECU_layer/7_SEGMENTS/7_SEGMENTS.c: 106:                 }
-}
-[e ++ _svs_counter_2 -> 1 `i ]
-[e $ < _svs_counter_2 -> 6 `i 296  ]
-[e :U 297 ]
-}
-"107
-[; ;ECU_layer/7_SEGMENTS/7_SEGMENTS.c: 107:                 temp.port = Seven_SEG->SVS_EN_PINS[svs_counter].SVS_en_port;
-[e = . _temp 0 -> . *U + &U . *U _Seven_SEG 2 * -> _svs_counter `ux -> -> # *U &U . *U _Seven_SEG 2 `ui `ux 0 `uc ]
-"108
-[; ;ECU_layer/7_SEGMENTS/7_SEGMENTS.c: 108:                 temp.pin = Seven_SEG->SVS_EN_PINS[svs_counter].SVS_en_pin;
-[e = . _temp 1 -> . *U + &U . *U _Seven_SEG 2 * -> _svs_counter `ux -> -> # *U &U . *U _Seven_SEG 2 `ui `ux 1 `uc ]
 "109
-[; ;ECU_layer/7_SEGMENTS/7_SEGMENTS.c: 109:                 gpio_pin_write_logic( &temp, GPIO_LOW);
-[e ( _gpio_pin_write_logic (2 , &U _temp . `E2798 0 ]
+[; ;ECU_layer/7_SEGMENTS/7_SEGMENTS.c: 109:                 if(svs_counter != 0){
+[e $ ! != -> _svs_counter `i -> 0 `i 299  ]
+{
 "110
-[; ;ECU_layer/7_SEGMENTS/7_SEGMENTS.c: 110:                 SVS_print(Seven_SEG, data[svs_counter]);
-[e ( _SVS_print (2 , -> _Seven_SEG `*CS274 -> *U + _data * -> _svs_counter `ux -> -> # *U _data `ui `ux `E2870 ]
+[; ;ECU_layer/7_SEGMENTS/7_SEGMENTS.c: 110:                     temp.port = Seven_SEG->SVS_EN_PINS[svs_counter-1].SVS_en_port;
+[e = . _temp 0 -> . *U + &U . *U _Seven_SEG 2 * -> -> - -> _svs_counter `i -> 1 `i `ui `ux -> -> # *U &U . *U _Seven_SEG 2 `ui `ux 0 `uc ]
 "111
-[; ;ECU_layer/7_SEGMENTS/7_SEGMENTS.c: 111:                 for(long l =0; l<=5000000;l++);
+[; ;ECU_layer/7_SEGMENTS/7_SEGMENTS.c: 111:                     temp.pin = Seven_SEG->SVS_EN_PINS[svs_counter-1].SVS_en_pin;
+[e = . _temp 1 -> . *U + &U . *U _Seven_SEG 2 * -> -> - -> _svs_counter `i -> 1 `i `ui `ux -> -> # *U &U . *U _Seven_SEG 2 `ui `ux 1 `uc ]
+"112
+[; ;ECU_layer/7_SEGMENTS/7_SEGMENTS.c: 112:                     gpio_pin_write_logic( &temp, GPIO_HIGH);
+[e ( _gpio_pin_write_logic (2 , &U _temp . `E2798 1 ]
+"113
+[; ;ECU_layer/7_SEGMENTS/7_SEGMENTS.c: 113:                 }
+}
+[e :U 299 ]
+"114
+[; ;ECU_layer/7_SEGMENTS/7_SEGMENTS.c: 114:                 temp.port = Seven_SEG->SVS_EN_PINS[svs_counter].SVS_en_port;
+[e = . _temp 0 -> . *U + &U . *U _Seven_SEG 2 * -> _svs_counter `ux -> -> # *U &U . *U _Seven_SEG 2 `ui `ux 0 `uc ]
+"115
+[; ;ECU_layer/7_SEGMENTS/7_SEGMENTS.c: 115:                 temp.pin = Seven_SEG->SVS_EN_PINS[svs_counter].SVS_en_pin;
+[e = . _temp 1 -> . *U + &U . *U _Seven_SEG 2 * -> _svs_counter `ux -> -> # *U &U . *U _Seven_SEG 2 `ui `ux 1 `uc ]
+"116
+[; ;ECU_layer/7_SEGMENTS/7_SEGMENTS.c: 116:                 gpio_pin_write_logic( &temp, GPIO_LOW);
+[e ( _gpio_pin_write_logic (2 , &U _temp . `E2798 0 ]
+"117
+[; ;ECU_layer/7_SEGMENTS/7_SEGMENTS.c: 117:                 SVS_print(Seven_SEG, data[svs_counter]);
+[e ( _SVS_print (2 , -> _Seven_SEG `*CS274 -> *U + _data * -> _svs_counter `ux -> -> # *U _data `ui `ux `E2870 ]
+"118
+[; ;ECU_layer/7_SEGMENTS/7_SEGMENTS.c: 118:                 for(long l =0; l<=500;l++);
 {
 [v _l `l ~T0 @X0 1 a ]
 [e = _l -> -> 0 `i `l ]
-[e $ <= _l -> 5000000 `l 299  ]
-[e $U 300  ]
-[e :U 299 ]
-[e ++ _l -> -> 1 `i `l ]
-[e $ <= _l -> 5000000 `l 299  ]
+[e $ <= _l -> -> 500 `i `l 300  ]
+[e $U 301  ]
 [e :U 300 ]
+[e ++ _l -> -> 1 `i `l ]
+[e $ <= _l -> -> 500 `i `l 300  ]
+[e :U 301 ]
 }
-"112
-[; ;ECU_layer/7_SEGMENTS/7_SEGMENTS.c: 112:             }
+"119
+[; ;ECU_layer/7_SEGMENTS/7_SEGMENTS.c: 119:             }
 }
 [e ++ _svs_counter -> -> 1 `i `uc ]
-[e $ < -> _svs_counter `i -> 6 `i 293  ]
-[e :U 294 ]
+[e $ < -> _svs_counter `i -> 6 `i 296  ]
+[e :U 297 ]
 }
-"114
-[; ;ECU_layer/7_SEGMENTS/7_SEGMENTS.c: 114:         }
+"121
+[; ;ECU_layer/7_SEGMENTS/7_SEGMENTS.c: 121:         }
 }
 [e :U 292 ]
-"115
-[; ;ECU_layer/7_SEGMENTS/7_SEGMENTS.c: 115:         return ret;
+"122
+[; ;ECU_layer/7_SEGMENTS/7_SEGMENTS.c: 122:         return ret;
 [e ) _ret ]
 [e $UE 290  ]
-"117
-[; ;ECU_layer/7_SEGMENTS/7_SEGMENTS.c: 117:     }
+"124
+[; ;ECU_layer/7_SEGMENTS/7_SEGMENTS.c: 124:     }
 [e :UE 290 ]
 }

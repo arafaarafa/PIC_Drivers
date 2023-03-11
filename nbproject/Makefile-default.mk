@@ -30,12 +30,12 @@ ifeq ($(TYPE_IMAGE), DEBUG_RUN)
 IMAGE_TYPE=debug
 OUTPUT_SUFFIX=elf
 DEBUGGABLE_SUFFIX=elf
-FINAL_IMAGE=${DISTDIR}/PIC.${IMAGE_TYPE}.${OUTPUT_SUFFIX}
+FINAL_IMAGE=${DISTDIR}/PIC_Drivers.${IMAGE_TYPE}.${OUTPUT_SUFFIX}
 else
 IMAGE_TYPE=production
 OUTPUT_SUFFIX=hex
 DEBUGGABLE_SUFFIX=elf
-FINAL_IMAGE=${DISTDIR}/PIC.${IMAGE_TYPE}.${OUTPUT_SUFFIX}
+FINAL_IMAGE=${DISTDIR}/PIC_Drivers.${IMAGE_TYPE}.${OUTPUT_SUFFIX}
 endif
 
 ifeq ($(COMPARE_BUILD), true)
@@ -51,17 +51,17 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Source Files Quoted if spaced
-SOURCEFILES_QUOTED_IF_SPACED=ECU_layer/LED/LED.c MCAL_layer/GPIO/GPIO.c MCAL_layer/device_config.c main.c ECU_layer/PUSH_BUTTON/PUSH_BUTTON.c ECU_layer/ECU_RELAY/ECU_RELAY.c ECU_layer/DC_MOTOR/DC_MOTOR.c ECU_layer/7_SEGMENTS/7_SEGMENTS.c
+SOURCEFILES_QUOTED_IF_SPACED=ECU_layer/7_SEGMENTS/7_SEGMENTS.c ECU_layer/DC_MOTOR/DC_MOTOR.c ECU_layer/ECU_RELAY/ECU_RELAY.c ECU_layer/LED/LED.c ECU_layer/PUSH_BUTTON/PUSH_BUTTON.c MCAL_layer/GPIO/GPIO.c MCAL_layer/device_config.c main.c
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/ECU_layer/LED/LED.p1 ${OBJECTDIR}/MCAL_layer/GPIO/GPIO.p1 ${OBJECTDIR}/MCAL_layer/device_config.p1 ${OBJECTDIR}/main.p1 ${OBJECTDIR}/ECU_layer/PUSH_BUTTON/PUSH_BUTTON.p1 ${OBJECTDIR}/ECU_layer/ECU_RELAY/ECU_RELAY.p1 ${OBJECTDIR}/ECU_layer/DC_MOTOR/DC_MOTOR.p1 ${OBJECTDIR}/ECU_layer/7_SEGMENTS/7_SEGMENTS.p1
-POSSIBLE_DEPFILES=${OBJECTDIR}/ECU_layer/LED/LED.p1.d ${OBJECTDIR}/MCAL_layer/GPIO/GPIO.p1.d ${OBJECTDIR}/MCAL_layer/device_config.p1.d ${OBJECTDIR}/main.p1.d ${OBJECTDIR}/ECU_layer/PUSH_BUTTON/PUSH_BUTTON.p1.d ${OBJECTDIR}/ECU_layer/ECU_RELAY/ECU_RELAY.p1.d ${OBJECTDIR}/ECU_layer/DC_MOTOR/DC_MOTOR.p1.d ${OBJECTDIR}/ECU_layer/7_SEGMENTS/7_SEGMENTS.p1.d
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/ECU_layer/7_SEGMENTS/7_SEGMENTS.p1 ${OBJECTDIR}/ECU_layer/DC_MOTOR/DC_MOTOR.p1 ${OBJECTDIR}/ECU_layer/ECU_RELAY/ECU_RELAY.p1 ${OBJECTDIR}/ECU_layer/LED/LED.p1 ${OBJECTDIR}/ECU_layer/PUSH_BUTTON/PUSH_BUTTON.p1 ${OBJECTDIR}/MCAL_layer/GPIO/GPIO.p1 ${OBJECTDIR}/MCAL_layer/device_config.p1 ${OBJECTDIR}/main.p1
+POSSIBLE_DEPFILES=${OBJECTDIR}/ECU_layer/7_SEGMENTS/7_SEGMENTS.p1.d ${OBJECTDIR}/ECU_layer/DC_MOTOR/DC_MOTOR.p1.d ${OBJECTDIR}/ECU_layer/ECU_RELAY/ECU_RELAY.p1.d ${OBJECTDIR}/ECU_layer/LED/LED.p1.d ${OBJECTDIR}/ECU_layer/PUSH_BUTTON/PUSH_BUTTON.p1.d ${OBJECTDIR}/MCAL_layer/GPIO/GPIO.p1.d ${OBJECTDIR}/MCAL_layer/device_config.p1.d ${OBJECTDIR}/main.p1.d
 
 # Object Files
-OBJECTFILES=${OBJECTDIR}/ECU_layer/LED/LED.p1 ${OBJECTDIR}/MCAL_layer/GPIO/GPIO.p1 ${OBJECTDIR}/MCAL_layer/device_config.p1 ${OBJECTDIR}/main.p1 ${OBJECTDIR}/ECU_layer/PUSH_BUTTON/PUSH_BUTTON.p1 ${OBJECTDIR}/ECU_layer/ECU_RELAY/ECU_RELAY.p1 ${OBJECTDIR}/ECU_layer/DC_MOTOR/DC_MOTOR.p1 ${OBJECTDIR}/ECU_layer/7_SEGMENTS/7_SEGMENTS.p1
+OBJECTFILES=${OBJECTDIR}/ECU_layer/7_SEGMENTS/7_SEGMENTS.p1 ${OBJECTDIR}/ECU_layer/DC_MOTOR/DC_MOTOR.p1 ${OBJECTDIR}/ECU_layer/ECU_RELAY/ECU_RELAY.p1 ${OBJECTDIR}/ECU_layer/LED/LED.p1 ${OBJECTDIR}/ECU_layer/PUSH_BUTTON/PUSH_BUTTON.p1 ${OBJECTDIR}/MCAL_layer/GPIO/GPIO.p1 ${OBJECTDIR}/MCAL_layer/device_config.p1 ${OBJECTDIR}/main.p1
 
 # Source Files
-SOURCEFILES=ECU_layer/LED/LED.c MCAL_layer/GPIO/GPIO.c MCAL_layer/device_config.c main.c ECU_layer/PUSH_BUTTON/PUSH_BUTTON.c ECU_layer/ECU_RELAY/ECU_RELAY.c ECU_layer/DC_MOTOR/DC_MOTOR.c ECU_layer/7_SEGMENTS/7_SEGMENTS.c
+SOURCEFILES=ECU_layer/7_SEGMENTS/7_SEGMENTS.c ECU_layer/DC_MOTOR/DC_MOTOR.c ECU_layer/ECU_RELAY/ECU_RELAY.c ECU_layer/LED/LED.c ECU_layer/PUSH_BUTTON/PUSH_BUTTON.c MCAL_layer/GPIO/GPIO.c MCAL_layer/device_config.c main.c
 
 
 
@@ -82,12 +82,36 @@ FIXDEPS=fixDeps
 ifneq ($(INFORMATION_MESSAGE), )
 	@echo $(INFORMATION_MESSAGE)
 endif
-	${MAKE}  -f nbproject/Makefile-default.mk ${DISTDIR}/PIC.${IMAGE_TYPE}.${OUTPUT_SUFFIX}
+	${MAKE}  -f nbproject/Makefile-default.mk ${DISTDIR}/PIC_Drivers.${IMAGE_TYPE}.${OUTPUT_SUFFIX}
 
 MP_PROCESSOR_OPTION=18F4620
 # ------------------------------------------------------------------------------------
 # Rules for buildStep: compile
 ifeq ($(TYPE_IMAGE), DEBUG_RUN)
+${OBJECTDIR}/ECU_layer/7_SEGMENTS/7_SEGMENTS.p1: ECU_layer/7_SEGMENTS/7_SEGMENTS.c  nbproject/Makefile-${CND_CONF}.mk 
+	@${MKDIR} "${OBJECTDIR}/ECU_layer/7_SEGMENTS" 
+	@${RM} ${OBJECTDIR}/ECU_layer/7_SEGMENTS/7_SEGMENTS.p1.d 
+	@${RM} ${OBJECTDIR}/ECU_layer/7_SEGMENTS/7_SEGMENTS.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1  -mdebugger=none   -mdfp="${DFP_DIR}/xc8"  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gcoff -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/ECU_layer/7_SEGMENTS/7_SEGMENTS.p1 ECU_layer/7_SEGMENTS/7_SEGMENTS.c 
+	@-${MV} ${OBJECTDIR}/ECU_layer/7_SEGMENTS/7_SEGMENTS.d ${OBJECTDIR}/ECU_layer/7_SEGMENTS/7_SEGMENTS.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/ECU_layer/7_SEGMENTS/7_SEGMENTS.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
+${OBJECTDIR}/ECU_layer/DC_MOTOR/DC_MOTOR.p1: ECU_layer/DC_MOTOR/DC_MOTOR.c  nbproject/Makefile-${CND_CONF}.mk 
+	@${MKDIR} "${OBJECTDIR}/ECU_layer/DC_MOTOR" 
+	@${RM} ${OBJECTDIR}/ECU_layer/DC_MOTOR/DC_MOTOR.p1.d 
+	@${RM} ${OBJECTDIR}/ECU_layer/DC_MOTOR/DC_MOTOR.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1  -mdebugger=none   -mdfp="${DFP_DIR}/xc8"  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gcoff -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/ECU_layer/DC_MOTOR/DC_MOTOR.p1 ECU_layer/DC_MOTOR/DC_MOTOR.c 
+	@-${MV} ${OBJECTDIR}/ECU_layer/DC_MOTOR/DC_MOTOR.d ${OBJECTDIR}/ECU_layer/DC_MOTOR/DC_MOTOR.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/ECU_layer/DC_MOTOR/DC_MOTOR.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
+${OBJECTDIR}/ECU_layer/ECU_RELAY/ECU_RELAY.p1: ECU_layer/ECU_RELAY/ECU_RELAY.c  nbproject/Makefile-${CND_CONF}.mk 
+	@${MKDIR} "${OBJECTDIR}/ECU_layer/ECU_RELAY" 
+	@${RM} ${OBJECTDIR}/ECU_layer/ECU_RELAY/ECU_RELAY.p1.d 
+	@${RM} ${OBJECTDIR}/ECU_layer/ECU_RELAY/ECU_RELAY.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1  -mdebugger=none   -mdfp="${DFP_DIR}/xc8"  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gcoff -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/ECU_layer/ECU_RELAY/ECU_RELAY.p1 ECU_layer/ECU_RELAY/ECU_RELAY.c 
+	@-${MV} ${OBJECTDIR}/ECU_layer/ECU_RELAY/ECU_RELAY.d ${OBJECTDIR}/ECU_layer/ECU_RELAY/ECU_RELAY.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/ECU_layer/ECU_RELAY/ECU_RELAY.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
 ${OBJECTDIR}/ECU_layer/LED/LED.p1: ECU_layer/LED/LED.c  nbproject/Makefile-${CND_CONF}.mk 
 	@${MKDIR} "${OBJECTDIR}/ECU_layer/LED" 
 	@${RM} ${OBJECTDIR}/ECU_layer/LED/LED.p1.d 
@@ -95,6 +119,14 @@ ${OBJECTDIR}/ECU_layer/LED/LED.p1: ECU_layer/LED/LED.c  nbproject/Makefile-${CND
 	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1  -mdebugger=none   -mdfp="${DFP_DIR}/xc8"  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gcoff -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/ECU_layer/LED/LED.p1 ECU_layer/LED/LED.c 
 	@-${MV} ${OBJECTDIR}/ECU_layer/LED/LED.d ${OBJECTDIR}/ECU_layer/LED/LED.p1.d 
 	@${FIXDEPS} ${OBJECTDIR}/ECU_layer/LED/LED.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
+${OBJECTDIR}/ECU_layer/PUSH_BUTTON/PUSH_BUTTON.p1: ECU_layer/PUSH_BUTTON/PUSH_BUTTON.c  nbproject/Makefile-${CND_CONF}.mk 
+	@${MKDIR} "${OBJECTDIR}/ECU_layer/PUSH_BUTTON" 
+	@${RM} ${OBJECTDIR}/ECU_layer/PUSH_BUTTON/PUSH_BUTTON.p1.d 
+	@${RM} ${OBJECTDIR}/ECU_layer/PUSH_BUTTON/PUSH_BUTTON.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1  -mdebugger=none   -mdfp="${DFP_DIR}/xc8"  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gcoff -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/ECU_layer/PUSH_BUTTON/PUSH_BUTTON.p1 ECU_layer/PUSH_BUTTON/PUSH_BUTTON.c 
+	@-${MV} ${OBJECTDIR}/ECU_layer/PUSH_BUTTON/PUSH_BUTTON.d ${OBJECTDIR}/ECU_layer/PUSH_BUTTON/PUSH_BUTTON.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/ECU_layer/PUSH_BUTTON/PUSH_BUTTON.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
 ${OBJECTDIR}/MCAL_layer/GPIO/GPIO.p1: MCAL_layer/GPIO/GPIO.c  nbproject/Makefile-${CND_CONF}.mk 
 	@${MKDIR} "${OBJECTDIR}/MCAL_layer/GPIO" 
@@ -120,39 +152,31 @@ ${OBJECTDIR}/main.p1: main.c  nbproject/Makefile-${CND_CONF}.mk
 	@-${MV} ${OBJECTDIR}/main.d ${OBJECTDIR}/main.p1.d 
 	@${FIXDEPS} ${OBJECTDIR}/main.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
-${OBJECTDIR}/ECU_layer/PUSH_BUTTON/PUSH_BUTTON.p1: ECU_layer/PUSH_BUTTON/PUSH_BUTTON.c  nbproject/Makefile-${CND_CONF}.mk 
-	@${MKDIR} "${OBJECTDIR}/ECU_layer/PUSH_BUTTON" 
-	@${RM} ${OBJECTDIR}/ECU_layer/PUSH_BUTTON/PUSH_BUTTON.p1.d 
-	@${RM} ${OBJECTDIR}/ECU_layer/PUSH_BUTTON/PUSH_BUTTON.p1 
-	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1  -mdebugger=none   -mdfp="${DFP_DIR}/xc8"  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gcoff -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/ECU_layer/PUSH_BUTTON/PUSH_BUTTON.p1 ECU_layer/PUSH_BUTTON/PUSH_BUTTON.c 
-	@-${MV} ${OBJECTDIR}/ECU_layer/PUSH_BUTTON/PUSH_BUTTON.d ${OBJECTDIR}/ECU_layer/PUSH_BUTTON/PUSH_BUTTON.p1.d 
-	@${FIXDEPS} ${OBJECTDIR}/ECU_layer/PUSH_BUTTON/PUSH_BUTTON.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
-	
-${OBJECTDIR}/ECU_layer/ECU_RELAY/ECU_RELAY.p1: ECU_layer/ECU_RELAY/ECU_RELAY.c  nbproject/Makefile-${CND_CONF}.mk 
-	@${MKDIR} "${OBJECTDIR}/ECU_layer/ECU_RELAY" 
-	@${RM} ${OBJECTDIR}/ECU_layer/ECU_RELAY/ECU_RELAY.p1.d 
-	@${RM} ${OBJECTDIR}/ECU_layer/ECU_RELAY/ECU_RELAY.p1 
-	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1  -mdebugger=none   -mdfp="${DFP_DIR}/xc8"  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gcoff -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/ECU_layer/ECU_RELAY/ECU_RELAY.p1 ECU_layer/ECU_RELAY/ECU_RELAY.c 
-	@-${MV} ${OBJECTDIR}/ECU_layer/ECU_RELAY/ECU_RELAY.d ${OBJECTDIR}/ECU_layer/ECU_RELAY/ECU_RELAY.p1.d 
-	@${FIXDEPS} ${OBJECTDIR}/ECU_layer/ECU_RELAY/ECU_RELAY.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+else
+${OBJECTDIR}/ECU_layer/7_SEGMENTS/7_SEGMENTS.p1: ECU_layer/7_SEGMENTS/7_SEGMENTS.c  nbproject/Makefile-${CND_CONF}.mk 
+	@${MKDIR} "${OBJECTDIR}/ECU_layer/7_SEGMENTS" 
+	@${RM} ${OBJECTDIR}/ECU_layer/7_SEGMENTS/7_SEGMENTS.p1.d 
+	@${RM} ${OBJECTDIR}/ECU_layer/7_SEGMENTS/7_SEGMENTS.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c   -mdfp="${DFP_DIR}/xc8"  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gcoff -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/ECU_layer/7_SEGMENTS/7_SEGMENTS.p1 ECU_layer/7_SEGMENTS/7_SEGMENTS.c 
+	@-${MV} ${OBJECTDIR}/ECU_layer/7_SEGMENTS/7_SEGMENTS.d ${OBJECTDIR}/ECU_layer/7_SEGMENTS/7_SEGMENTS.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/ECU_layer/7_SEGMENTS/7_SEGMENTS.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
 ${OBJECTDIR}/ECU_layer/DC_MOTOR/DC_MOTOR.p1: ECU_layer/DC_MOTOR/DC_MOTOR.c  nbproject/Makefile-${CND_CONF}.mk 
 	@${MKDIR} "${OBJECTDIR}/ECU_layer/DC_MOTOR" 
 	@${RM} ${OBJECTDIR}/ECU_layer/DC_MOTOR/DC_MOTOR.p1.d 
 	@${RM} ${OBJECTDIR}/ECU_layer/DC_MOTOR/DC_MOTOR.p1 
-	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1  -mdebugger=none   -mdfp="${DFP_DIR}/xc8"  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gcoff -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/ECU_layer/DC_MOTOR/DC_MOTOR.p1 ECU_layer/DC_MOTOR/DC_MOTOR.c 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c   -mdfp="${DFP_DIR}/xc8"  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gcoff -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/ECU_layer/DC_MOTOR/DC_MOTOR.p1 ECU_layer/DC_MOTOR/DC_MOTOR.c 
 	@-${MV} ${OBJECTDIR}/ECU_layer/DC_MOTOR/DC_MOTOR.d ${OBJECTDIR}/ECU_layer/DC_MOTOR/DC_MOTOR.p1.d 
 	@${FIXDEPS} ${OBJECTDIR}/ECU_layer/DC_MOTOR/DC_MOTOR.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
-${OBJECTDIR}/ECU_layer/7_SEGMENTS/7_SEGMENTS.p1: ECU_layer/7_SEGMENTS/7_SEGMENTS.c  nbproject/Makefile-${CND_CONF}.mk 
-	@${MKDIR} "${OBJECTDIR}/ECU_layer/7_SEGMENTS" 
-	@${RM} ${OBJECTDIR}/ECU_layer/7_SEGMENTS/7_SEGMENTS.p1.d 
-	@${RM} ${OBJECTDIR}/ECU_layer/7_SEGMENTS/7_SEGMENTS.p1 
-	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1  -mdebugger=none   -mdfp="${DFP_DIR}/xc8"  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gcoff -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/ECU_layer/7_SEGMENTS/7_SEGMENTS.p1 ECU_layer/7_SEGMENTS/7_SEGMENTS.c 
-	@-${MV} ${OBJECTDIR}/ECU_layer/7_SEGMENTS/7_SEGMENTS.d ${OBJECTDIR}/ECU_layer/7_SEGMENTS/7_SEGMENTS.p1.d 
-	@${FIXDEPS} ${OBJECTDIR}/ECU_layer/7_SEGMENTS/7_SEGMENTS.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+${OBJECTDIR}/ECU_layer/ECU_RELAY/ECU_RELAY.p1: ECU_layer/ECU_RELAY/ECU_RELAY.c  nbproject/Makefile-${CND_CONF}.mk 
+	@${MKDIR} "${OBJECTDIR}/ECU_layer/ECU_RELAY" 
+	@${RM} ${OBJECTDIR}/ECU_layer/ECU_RELAY/ECU_RELAY.p1.d 
+	@${RM} ${OBJECTDIR}/ECU_layer/ECU_RELAY/ECU_RELAY.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c   -mdfp="${DFP_DIR}/xc8"  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gcoff -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/ECU_layer/ECU_RELAY/ECU_RELAY.p1 ECU_layer/ECU_RELAY/ECU_RELAY.c 
+	@-${MV} ${OBJECTDIR}/ECU_layer/ECU_RELAY/ECU_RELAY.d ${OBJECTDIR}/ECU_layer/ECU_RELAY/ECU_RELAY.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/ECU_layer/ECU_RELAY/ECU_RELAY.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
-else
 ${OBJECTDIR}/ECU_layer/LED/LED.p1: ECU_layer/LED/LED.c  nbproject/Makefile-${CND_CONF}.mk 
 	@${MKDIR} "${OBJECTDIR}/ECU_layer/LED" 
 	@${RM} ${OBJECTDIR}/ECU_layer/LED/LED.p1.d 
@@ -160,6 +184,14 @@ ${OBJECTDIR}/ECU_layer/LED/LED.p1: ECU_layer/LED/LED.c  nbproject/Makefile-${CND
 	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c   -mdfp="${DFP_DIR}/xc8"  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gcoff -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/ECU_layer/LED/LED.p1 ECU_layer/LED/LED.c 
 	@-${MV} ${OBJECTDIR}/ECU_layer/LED/LED.d ${OBJECTDIR}/ECU_layer/LED/LED.p1.d 
 	@${FIXDEPS} ${OBJECTDIR}/ECU_layer/LED/LED.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
+${OBJECTDIR}/ECU_layer/PUSH_BUTTON/PUSH_BUTTON.p1: ECU_layer/PUSH_BUTTON/PUSH_BUTTON.c  nbproject/Makefile-${CND_CONF}.mk 
+	@${MKDIR} "${OBJECTDIR}/ECU_layer/PUSH_BUTTON" 
+	@${RM} ${OBJECTDIR}/ECU_layer/PUSH_BUTTON/PUSH_BUTTON.p1.d 
+	@${RM} ${OBJECTDIR}/ECU_layer/PUSH_BUTTON/PUSH_BUTTON.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c   -mdfp="${DFP_DIR}/xc8"  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gcoff -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/ECU_layer/PUSH_BUTTON/PUSH_BUTTON.p1 ECU_layer/PUSH_BUTTON/PUSH_BUTTON.c 
+	@-${MV} ${OBJECTDIR}/ECU_layer/PUSH_BUTTON/PUSH_BUTTON.d ${OBJECTDIR}/ECU_layer/PUSH_BUTTON/PUSH_BUTTON.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/ECU_layer/PUSH_BUTTON/PUSH_BUTTON.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
 ${OBJECTDIR}/MCAL_layer/GPIO/GPIO.p1: MCAL_layer/GPIO/GPIO.c  nbproject/Makefile-${CND_CONF}.mk 
 	@${MKDIR} "${OBJECTDIR}/MCAL_layer/GPIO" 
@@ -185,38 +217,6 @@ ${OBJECTDIR}/main.p1: main.c  nbproject/Makefile-${CND_CONF}.mk
 	@-${MV} ${OBJECTDIR}/main.d ${OBJECTDIR}/main.p1.d 
 	@${FIXDEPS} ${OBJECTDIR}/main.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
-${OBJECTDIR}/ECU_layer/PUSH_BUTTON/PUSH_BUTTON.p1: ECU_layer/PUSH_BUTTON/PUSH_BUTTON.c  nbproject/Makefile-${CND_CONF}.mk 
-	@${MKDIR} "${OBJECTDIR}/ECU_layer/PUSH_BUTTON" 
-	@${RM} ${OBJECTDIR}/ECU_layer/PUSH_BUTTON/PUSH_BUTTON.p1.d 
-	@${RM} ${OBJECTDIR}/ECU_layer/PUSH_BUTTON/PUSH_BUTTON.p1 
-	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c   -mdfp="${DFP_DIR}/xc8"  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gcoff -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/ECU_layer/PUSH_BUTTON/PUSH_BUTTON.p1 ECU_layer/PUSH_BUTTON/PUSH_BUTTON.c 
-	@-${MV} ${OBJECTDIR}/ECU_layer/PUSH_BUTTON/PUSH_BUTTON.d ${OBJECTDIR}/ECU_layer/PUSH_BUTTON/PUSH_BUTTON.p1.d 
-	@${FIXDEPS} ${OBJECTDIR}/ECU_layer/PUSH_BUTTON/PUSH_BUTTON.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
-	
-${OBJECTDIR}/ECU_layer/ECU_RELAY/ECU_RELAY.p1: ECU_layer/ECU_RELAY/ECU_RELAY.c  nbproject/Makefile-${CND_CONF}.mk 
-	@${MKDIR} "${OBJECTDIR}/ECU_layer/ECU_RELAY" 
-	@${RM} ${OBJECTDIR}/ECU_layer/ECU_RELAY/ECU_RELAY.p1.d 
-	@${RM} ${OBJECTDIR}/ECU_layer/ECU_RELAY/ECU_RELAY.p1 
-	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c   -mdfp="${DFP_DIR}/xc8"  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gcoff -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/ECU_layer/ECU_RELAY/ECU_RELAY.p1 ECU_layer/ECU_RELAY/ECU_RELAY.c 
-	@-${MV} ${OBJECTDIR}/ECU_layer/ECU_RELAY/ECU_RELAY.d ${OBJECTDIR}/ECU_layer/ECU_RELAY/ECU_RELAY.p1.d 
-	@${FIXDEPS} ${OBJECTDIR}/ECU_layer/ECU_RELAY/ECU_RELAY.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
-	
-${OBJECTDIR}/ECU_layer/DC_MOTOR/DC_MOTOR.p1: ECU_layer/DC_MOTOR/DC_MOTOR.c  nbproject/Makefile-${CND_CONF}.mk 
-	@${MKDIR} "${OBJECTDIR}/ECU_layer/DC_MOTOR" 
-	@${RM} ${OBJECTDIR}/ECU_layer/DC_MOTOR/DC_MOTOR.p1.d 
-	@${RM} ${OBJECTDIR}/ECU_layer/DC_MOTOR/DC_MOTOR.p1 
-	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c   -mdfp="${DFP_DIR}/xc8"  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gcoff -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/ECU_layer/DC_MOTOR/DC_MOTOR.p1 ECU_layer/DC_MOTOR/DC_MOTOR.c 
-	@-${MV} ${OBJECTDIR}/ECU_layer/DC_MOTOR/DC_MOTOR.d ${OBJECTDIR}/ECU_layer/DC_MOTOR/DC_MOTOR.p1.d 
-	@${FIXDEPS} ${OBJECTDIR}/ECU_layer/DC_MOTOR/DC_MOTOR.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
-	
-${OBJECTDIR}/ECU_layer/7_SEGMENTS/7_SEGMENTS.p1: ECU_layer/7_SEGMENTS/7_SEGMENTS.c  nbproject/Makefile-${CND_CONF}.mk 
-	@${MKDIR} "${OBJECTDIR}/ECU_layer/7_SEGMENTS" 
-	@${RM} ${OBJECTDIR}/ECU_layer/7_SEGMENTS/7_SEGMENTS.p1.d 
-	@${RM} ${OBJECTDIR}/ECU_layer/7_SEGMENTS/7_SEGMENTS.p1 
-	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c   -mdfp="${DFP_DIR}/xc8"  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gcoff -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/ECU_layer/7_SEGMENTS/7_SEGMENTS.p1 ECU_layer/7_SEGMENTS/7_SEGMENTS.c 
-	@-${MV} ${OBJECTDIR}/ECU_layer/7_SEGMENTS/7_SEGMENTS.d ${OBJECTDIR}/ECU_layer/7_SEGMENTS/7_SEGMENTS.p1.d 
-	@${FIXDEPS} ${OBJECTDIR}/ECU_layer/7_SEGMENTS/7_SEGMENTS.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
-	
 endif
 
 # ------------------------------------------------------------------------------------
@@ -234,15 +234,15 @@ endif
 # ------------------------------------------------------------------------------------
 # Rules for buildStep: link
 ifeq ($(TYPE_IMAGE), DEBUG_RUN)
-${DISTDIR}/PIC.${IMAGE_TYPE}.${OUTPUT_SUFFIX}: ${OBJECTFILES}  nbproject/Makefile-${CND_CONF}.mk    
+${DISTDIR}/PIC_Drivers.${IMAGE_TYPE}.${OUTPUT_SUFFIX}: ${OBJECTFILES}  nbproject/Makefile-${CND_CONF}.mk    
 	@${MKDIR} ${DISTDIR} 
-	${MP_CC} $(MP_EXTRA_LD_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -Wl,-Map=${DISTDIR}/PIC.${IMAGE_TYPE}.map  -D__DEBUG=1  -mdebugger=none  -DXPRJ_default=$(CND_CONF)  -Wl,--defsym=__MPLAB_BUILD=1   -mdfp="${DFP_DIR}/xc8"  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -mwarn=-3 -Wa,-a -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits -std=c99 -gcoff -mstack=compiled:auto:auto:auto        $(COMPARISON_BUILD) -Wl,--memorysummary,${DISTDIR}/memoryfile.xml -o ${DISTDIR}/PIC.${IMAGE_TYPE}.${DEBUGGABLE_SUFFIX}  ${OBJECTFILES_QUOTED_IF_SPACED}     
-	@${RM} ${DISTDIR}/PIC.${IMAGE_TYPE}.hex 
+	${MP_CC} $(MP_EXTRA_LD_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -Wl,-Map=${DISTDIR}/PIC_Drivers.${IMAGE_TYPE}.map  -D__DEBUG=1  -mdebugger=none  -DXPRJ_default=$(CND_CONF)  -Wl,--defsym=__MPLAB_BUILD=1   -mdfp="${DFP_DIR}/xc8"  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -mwarn=-3 -Wa,-a -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits -std=c99 -gcoff -mstack=compiled:auto:auto:auto        $(COMPARISON_BUILD) -Wl,--memorysummary,${DISTDIR}/memoryfile.xml -o ${DISTDIR}/PIC_Drivers.${IMAGE_TYPE}.${DEBUGGABLE_SUFFIX}  ${OBJECTFILES_QUOTED_IF_SPACED}     
+	@${RM} ${DISTDIR}/PIC_Drivers.${IMAGE_TYPE}.hex 
 	
 else
-${DISTDIR}/PIC.${IMAGE_TYPE}.${OUTPUT_SUFFIX}: ${OBJECTFILES}  nbproject/Makefile-${CND_CONF}.mk   
+${DISTDIR}/PIC_Drivers.${IMAGE_TYPE}.${OUTPUT_SUFFIX}: ${OBJECTFILES}  nbproject/Makefile-${CND_CONF}.mk   
 	@${MKDIR} ${DISTDIR} 
-	${MP_CC} $(MP_EXTRA_LD_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -Wl,-Map=${DISTDIR}/PIC.${IMAGE_TYPE}.map  -DXPRJ_default=$(CND_CONF)  -Wl,--defsym=__MPLAB_BUILD=1   -mdfp="${DFP_DIR}/xc8"  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -mwarn=-3 -Wa,-a -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits -std=c99 -gcoff -mstack=compiled:auto:auto:auto     $(COMPARISON_BUILD) -Wl,--memorysummary,${DISTDIR}/memoryfile.xml -o ${DISTDIR}/PIC.${IMAGE_TYPE}.${DEBUGGABLE_SUFFIX}  ${OBJECTFILES_QUOTED_IF_SPACED}     
+	${MP_CC} $(MP_EXTRA_LD_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -Wl,-Map=${DISTDIR}/PIC_Drivers.${IMAGE_TYPE}.map  -DXPRJ_default=$(CND_CONF)  -Wl,--defsym=__MPLAB_BUILD=1   -mdfp="${DFP_DIR}/xc8"  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -mwarn=-3 -Wa,-a -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits -std=c99 -gcoff -mstack=compiled:auto:auto:auto     $(COMPARISON_BUILD) -Wl,--memorysummary,${DISTDIR}/memoryfile.xml -o ${DISTDIR}/PIC_Drivers.${IMAGE_TYPE}.${DEBUGGABLE_SUFFIX}  ${OBJECTFILES_QUOTED_IF_SPACED}     
 	
 endif
 

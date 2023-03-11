@@ -96,19 +96,26 @@ Std_ReturnType SVS_print(const SVS_config_t *Seven_SEG, SVS_data_t data){
             ret =E_NOT_OK;
         }
         else{
-            uint8 svs_counter = 0;
+            
             pin_config_t temp ;
+            for(uint8 svs_counter_2 = 0 ;svs_counter_2<SVS_MAX_NO; svs_counter_2++){
+                
+                temp.port = Seven_SEG->SVS_EN_PINS[svs_counter_2].SVS_en_port;
+                temp.pin = Seven_SEG->SVS_EN_PINS[svs_counter_2].SVS_en_pin;
+                gpio_pin_write_logic( &temp, GPIO_HIGH);    
+            }
+            uint8 svs_counter = 0;
             for(;svs_counter<SVS_MAX_NO; svs_counter++){
-                for(int svs_counter_2 = 0 ;svs_counter_2<SVS_MAX_NO; svs_counter_2++){
-                    temp.port = Seven_SEG->SVS_EN_PINS[svs_counter_2].SVS_en_port;
-                    temp.pin = Seven_SEG->SVS_EN_PINS[svs_counter_2].SVS_en_pin;
-                    gpio_pin_write_logic( &temp, GPIO_HIGH);
+                if(svs_counter != 0){
+                    temp.port = Seven_SEG->SVS_EN_PINS[svs_counter-1].SVS_en_port;
+                    temp.pin = Seven_SEG->SVS_EN_PINS[svs_counter-1].SVS_en_pin;
+                    gpio_pin_write_logic( &temp, GPIO_HIGH);  
                 }
                 temp.port = Seven_SEG->SVS_EN_PINS[svs_counter].SVS_en_port;
                 temp.pin = Seven_SEG->SVS_EN_PINS[svs_counter].SVS_en_pin;
                 gpio_pin_write_logic( &temp, GPIO_LOW);
                 SVS_print(Seven_SEG, data[svs_counter]);
-                for(long l =0; l<=5000000;l++);
+                for(long l =0; l<=500;l++);
             }
             
         }

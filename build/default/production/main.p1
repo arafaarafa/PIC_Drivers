@@ -518,58 +518,72 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;main.c: 84:     while(1){
 [e :U 281 ]
 {
-"100
-[; ;main.c: 100:         for(int i =0 ; i<10; i++){
+"102
+[; ;main.c: 102:             for(uint8 counter = 0; counter<6 ; counter++){
 {
-[v _i `i ~T0 @X0 1 a ]
-[e = _i -> 0 `i ]
-[e $ < _i -> 10 `i 283  ]
+[v _counter `uc ~T0 @X0 1 a ]
+[e = _counter -> -> 0 `i `uc ]
+[e $ < -> _counter `i -> 6 `i 283  ]
 [e $U 284  ]
 [e :U 283 ]
 {
-"101
-[; ;main.c: 101:             SVS_print_pov(&seven_seg, data);
-[e ( _SVS_print_pov (2 , &U _seven_seg &U _data ]
-"102
-[; ;main.c: 102:             _delay((unsigned long)((2000)*(16000000ul/4000.0)));
-[e ( __delay (1 -> * -> -> 2000 `i `d / -> -> 16000000 `ul `d .4000.0 `ul ]
 "103
-[; ;main.c: 103:         }
+[; ;main.c: 103:                 data[counter]++;
+[e ++ *U + &U _data * -> _counter `ux -> -> # *U &U _data `ui `ux -> -> 1 `i `uc ]
+"104
+[; ;main.c: 104:                 if(data[counter]>9){
+[e $ ! > -> *U + &U _data * -> _counter `ux -> -> # *U &U _data `ui `ux `i -> 9 `i 286  ]
+{
+"105
+[; ;main.c: 105:                     data[counter]=0;
+[e = *U + &U _data * -> _counter `ux -> -> # *U &U _data `ui `ux -> -> 0 `i `uc ]
+"106
+[; ;main.c: 106:                 }
 }
-[e ++ _i -> 1 `i ]
-[e $ < _i -> 10 `i 283  ]
+[e :U 286 ]
+"107
+[; ;main.c: 107:                 SVS_print_pov(&seven_seg, data);
+[e ( _SVS_print_pov (2 , &U _seven_seg &U _data ]
+"108
+[; ;main.c: 108:                 _delay((unsigned long)((30)*(16000000ul/4000.0)));
+[e ( __delay (1 -> * -> -> 30 `i `d / -> -> 16000000 `ul `d .4000.0 `ul ]
+"109
+[; ;main.c: 109:             }
+}
+[e ++ _counter -> -> 1 `i `uc ]
+[e $ < -> _counter `i -> 6 `i 283  ]
 [e :U 284 ]
 }
-"104
-[; ;main.c: 104:     }
+"114
+[; ;main.c: 114:     }
 }
 [e :U 280 ]
 [e $U 281  ]
 [e :U 282 ]
-"105
-[; ;main.c: 105:     return (0);
+"115
+[; ;main.c: 115:     return (0);
 [e ) -> 0 `i ]
 [e $UE 279  ]
-"106
-[; ;main.c: 106: }
+"116
+[; ;main.c: 116: }
 [e :UE 279 ]
 }
-"108
-[; ;main.c: 108: void appliction_intialize(void){
+"118
+[; ;main.c: 118: void appliction_intialize(void){
 [v _appliction_intialize `(v ~T0 @X0 1 ef ]
 {
 [e :U _appliction_intialize ]
 [f ]
-"109
-[; ;main.c: 109:     ADCON0 = 0x00;
+"119
+[; ;main.c: 119:     ADCON0 = 0x00;
 [e = _ADCON0 -> -> 0 `i `uc ]
-"110
-[; ;main.c: 110:     ADCON1 = 0x0F;
-[e = _ADCON1 -> -> 15 `i `uc ]
 "120
-[; ;main.c: 120:     SVS_initialize(&seven_seg);
+[; ;main.c: 120:     ADCON1 = 0x0F;
+[e = _ADCON1 -> -> 15 `i `uc ]
+"130
+[; ;main.c: 130:     SVS_initialize(&seven_seg);
 [e ( _SVS_initialize (1 -> &U _seven_seg `*CS277 ]
-"123
-[; ;main.c: 123: }
-[e :UE 286 ]
+"133
+[; ;main.c: 133: }
+[e :UE 287 ]
 }
