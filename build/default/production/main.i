@@ -4887,23 +4887,37 @@ SVS_config_t seven_seg ={.SVS_port = PORTD_INDEX,
 
 
 int main() {
-
+    uint8 sec=0, min=0, hou=0;
     appliction_intialize();
-    uint8 data[6 ]= {1,2,3,4,5,6};
+    uint8 data[6 ]= {0,0,0,0,0,0};
     while(1){
 # 102 "main.c"
-            for(uint8 counter = 0; counter<6 ; counter++){
-                data[counter]++;
-                if(data[counter]>9){
-                    data[counter]=0;
-                }
-                SVS_print_pov(&seven_seg, data);
-                _delay((unsigned long)((30)*(16000000ul/4000.0)));
-            }
+        for(uint8 counter=0; counter <50;counter++){
+            SVS_print_pov(&seven_seg, data);
+            _delay((unsigned long)((15)*(16000000ul/4000.0)));
 
+        }
+        sec++;
+        if(sec>60){
+            sec=0;
+            min++;
+        }
+        if(min>60){
+            min=0;
+            hou++;
+        }
+        if(hou>24){
+            hou=0;
+        }
+        data[0]= (uint8)(hou/10);
+        data[1]= (uint8)(hou%10);
 
+        data[2]= (uint8)(min/10);
+        data[3]= (uint8)(min%10);
 
-
+        data[4]= (uint8)(sec/10);
+        data[5]= (uint8)(sec%10);
+# 140 "main.c"
     }
     return (0);
 }
@@ -4911,7 +4925,7 @@ int main() {
 void appliction_intialize(void){
     ADCON0 = 0x00;
     ADCON1 = 0x0F;
-# 130 "main.c"
+# 156 "main.c"
     SVS_initialize(&seven_seg);
 
 

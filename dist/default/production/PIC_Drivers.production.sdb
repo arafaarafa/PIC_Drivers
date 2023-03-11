@@ -145,6 +145,10 @@ PIN5 5
 PIN6 6
 PIN7 7
 ]
+"7 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\awdiv.c
+[v ___awdiv __awdiv `(i  1 e 2 0 ]
+"7 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\awmod.c
+[v ___awmod __awmod `(i  1 e 2 0 ]
 "4 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\fleq.c
 [v ___fleq __fleq `(b  1 e 0 0 ]
 "62 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\float.c
@@ -177,7 +181,7 @@ PIN7 7
 [v _SVS_print_pov SVS_print_pov `(uc  1 e 1 0 ]
 "80 D:\embedded c projects\PIC\PIC_Drivers\main.c
 [v _main main `(i  1 e 2 0 ]
-"118
+"144
 [v _appliction_intialize appliction_intialize `(v  1 e 1 0 ]
 "16 D:\embedded c projects\PIC\PIC_Drivers\MCAL_layer/GPIO/GPIO.c
 [v _gpio_pin_direction_initialize gpio_pin_direction_initialize `(uc  1 e 1 0 ]
@@ -246,14 +250,16 @@ PIN7 7
 [v main@counter counter `uc  1 a 1 38 ]
 "83
 [v main@data data `[6]uc  1 a 6 32 ]
-"82
-[v main@F2986 F2986 `[6]uc  1 s 6 F2986 ]
-"116
+"81
+[v main@hou hou `uc  1 a 1 41 ]
+[v main@min min `uc  1 a 1 40 ]
+[v main@sec sec `uc  1 a 1 39 ]
+"142
 } 0
-"118
+"144
 [v _appliction_intialize appliction_intialize `(v  1 e 1 0 ]
 {
-"133
+"159
 } 0
 "38 D:\embedded c projects\PIC\PIC_Drivers\ECU_layer/7_SEGMENTS/7_SEGMENTS.c
 [v _SVS_initialize SVS_initialize `(uc  1 e 1 0 ]
@@ -310,6 +316,30 @@ PIN7 7
 "16
 [v gpio_pin_direction_initialize@pin_config pin_config `*.39CS49  1 p 2 0 ]
 "35
+} 0
+"7 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\awmod.c
+[v ___awmod __awmod `(i  1 e 2 0 ]
+{
+"10
+[v ___awmod@sign sign `uc  1 a 1 5 ]
+[v ___awmod@counter counter `uc  1 a 1 4 ]
+"7
+[v ___awmod@dividend dividend `i  1 p 2 0 ]
+[v ___awmod@divisor divisor `i  1 p 2 2 ]
+"34
+} 0
+"7 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\awdiv.c
+[v ___awdiv __awdiv `(i  1 e 2 0 ]
+{
+"10
+[v ___awdiv@quotient quotient `i  1 a 2 6 ]
+"11
+[v ___awdiv@sign sign `uc  1 a 1 5 ]
+[v ___awdiv@counter counter `uc  1 a 1 4 ]
+"7
+[v ___awdiv@dividend dividend `i  1 p 2 0 ]
+[v ___awdiv@divisor divisor `i  1 p 2 2 ]
+"41
 } 0
 "92 D:\embedded c projects\PIC\PIC_Drivers\ECU_layer/7_SEGMENTS/7_SEGMENTS.c
 [v _SVS_print_pov SVS_print_pov `(uc  1 e 1 0 ]

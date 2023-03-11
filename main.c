@@ -76,11 +76,11 @@ SVS_config_t seven_seg ={.SVS_port = PORTD_INDEX,
                             .SVS_EN_PINS[5].SVS_en_port = PORTD_INDEX};
 
 
-
+           
 int main() {
-   
+    uint8 sec=0, min=0, hou=0;
     appliction_intialize();
-    uint8 data[SVS_MAX_NO ]= {1,2,3,4,5,6};
+    uint8 data[SVS_MAX_NO ]= {0,0,0,0,0,0};
     while(1){
         /*relay_turn_on(&relay_NC);
         relay_turn_on(&relay_NO);
@@ -99,14 +99,40 @@ int main() {
         
         
             
-            for(uint8 counter = 0; counter<SVS_MAX_NO ; counter++){
+        for(uint8 counter=0; counter <50;counter++){
+            SVS_print_pov(&seven_seg, data);
+            __delay_ms(15);
+        
+        }
+        sec++;
+        if(sec>60){
+            sec=0;
+            min++;
+        }
+        if(min>60){
+            min=0;
+            hou++;
+        }
+        if(hou>24){
+            hou=0;
+        }
+        data[0]= (uint8)(hou/10);
+        data[1]= (uint8)(hou%10);
+        
+        data[2]= (uint8)(min/10);
+        data[3]= (uint8)(min%10);
+        
+        data[4]= (uint8)(sec/10);
+        data[5]= (uint8)(sec%10);
+        
+           /* for(uint8 counter = 0; counter<SVS_MAX_NO ; counter++){
                 data[counter]++;
                 if(data[counter]>9){
                     data[counter]=0;
                 }
                 SVS_print_pov(&seven_seg, data);
-                __delay_ms(30);
-            }
+                
+            }*/
            
             
             
