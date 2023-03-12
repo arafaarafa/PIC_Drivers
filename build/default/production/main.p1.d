@@ -13,4 +13,6 @@ ECU_layer/PUSH_BUTTON/PUSH_BUTTON.h  \
 ECU_layer/ECU_RELAY/ECU_RELAY.h  \
 ECU_layer/7_SEGMENTS/7_SEGMENTS.h  \
 ECU_layer/7_SEGMENTS/7_SEGMENTS_CONFIG.h  \
-ECU_layer/DC_MOTOR/DC_MOTOR.h 
+ECU_layer/DC_MOTOR/DC_MOTOR.h  \
+ECU_layer/KEYPAD/keypad.h  \
+ECU_layer/KEYPAD/keypad_config.h 

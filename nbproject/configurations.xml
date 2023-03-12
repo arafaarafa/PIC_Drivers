@@ -15,6 +15,10 @@
         <logicalFolder name="ECU_RELAY" displayName="ECU_RELAY" projectFiles="true">
           <itemPath>ECU_layer/ECU_RELAY/ECU_RELAY.h</itemPath>
         </logicalFolder>
+        <logicalFolder name="KEYPAD" displayName="KEYPAD" projectFiles="true">
+          <itemPath>ECU_layer/KEYPAD/keypad.h</itemPath>
+          <itemPath>ECU_layer/KEYPAD/keypad_config.h</itemPath>
+        </logicalFolder>
         <logicalFolder name="LED" displayName="LED" projectFiles="true">
           <itemPath>ECU_layer/LED/LED.h</itemPath>
           <itemPath>ECU_layer/LED/LED_CONFIG.h</itemPath>
@@ -51,6 +55,9 @@
         </logicalFolder>
         <logicalFolder name="ECU_RELAY" displayName="ECU_RELAY" projectFiles="true">
           <itemPath>ECU_layer/ECU_RELAY/ECU_RELAY.c</itemPath>
+        </logicalFolder>
+        <logicalFolder name="KEYPAD" displayName="KEYPAD" projectFiles="true">
+          <itemPath>ECU_layer/KEYPAD/keypad.c</itemPath>
         </logicalFolder>
         <logicalFolder name="LED" displayName="LED" projectFiles="true">
           <itemPath>ECU_layer/LED/LED.c</itemPath>

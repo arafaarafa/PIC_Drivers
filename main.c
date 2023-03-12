@@ -8,6 +8,13 @@
 #include "application.h"
 #include "ECU_layer/DC_MOTOR/DC_MOTOR.h"
 #include "ECU_layer/7_SEGMENTS/7_SEGMENTS.h"
+#include "ECU_layer/KEYPAD/keypad.h"
+
+extern char values[KEYPAD_MAX_ROWS_NO][KEYPAD_MAX_COLS_NO]={{'7','8','9','/'},
+                                                            {'4','5','6','*'},
+                                                            {'1','2','3','-'},
+                                                            {'C','0','=','+'}};
+
 
 
 
@@ -60,7 +67,7 @@ dc_motor_config_t motor_1 = {
     
     
 };*/
-SVS_config_t seven_seg ={.SVS_port = PORTD_INDEX,
+/*SVS_config_t seven_seg ={.SVS_port = PORTD_INDEX,
                             .SVS_nibble_state = SVS_LOW_NIBBLE
                             ,.SVS_EN_PINS[0].SVS_en_pin=PIN6,
                             .SVS_EN_PINS[0].SVS_en_port = PORTC_INDEX
@@ -73,14 +80,44 @@ SVS_config_t seven_seg ={.SVS_port = PORTD_INDEX,
                             .SVS_EN_PINS[4].SVS_en_pin=PIN6,
                             .SVS_EN_PINS[4].SVS_en_port = PORTD_INDEX
                             ,.SVS_EN_PINS[5].SVS_en_pin=PIN7,
-                            .SVS_EN_PINS[5].SVS_en_port = PORTD_INDEX};
+                            .SVS_EN_PINS[5].SVS_en_port = PORTD_INDEX};*/
 
+keypad_config_t keypad={
+.keypad_rows[0].keypad_pin_port=PORTD_INDEX,
+.keypad_rows[0].keypad_pin=PIN0,
+
+.keypad_rows[1].keypad_pin_port=PORTD_INDEX,
+.keypad_rows[1].keypad_pin=PIN1,
+
+.keypad_rows[2].keypad_pin_port=PORTD_INDEX,
+.keypad_rows[2].keypad_pin=PIN2,
+
+.keypad_rows[3].keypad_pin_port=PORTD_INDEX,
+.keypad_rows[3].keypad_pin=PIN3,
+
+
+.keypad_cols[0].keypad_pin_port=PORTD_INDEX,
+.keypad_cols[0].keypad_pin=PIN4,
+
+.keypad_cols[1].keypad_pin_port=PORTD_INDEX,
+.keypad_cols[1].keypad_pin=PIN5,
+
+.keypad_cols[2].keypad_pin_port=PORTD_INDEX,
+.keypad_cols[2].keypad_pin=PIN6,
+
+.keypad_cols[3].keypad_pin_port=PORTD_INDEX,
+.keypad_cols[3].keypad_pin=PIN7
+};
+char value;
 
            
 int main() {
-    uint8 sec=0, min=0, hou=0;
+    /*uint8 sec=0, min=0, hou=0;
     appliction_intialize();
-    uint8 data[SVS_MAX_NO ]= {0,0,0,0,0,0};
+    uint8 data[SVS_MAX_NO ]= {0,0,0,0,0,0};*/
+    
+
+    appliction_intialize();
     while(1){
         /*relay_turn_on(&relay_NC);
         relay_turn_on(&relay_NO);
@@ -96,10 +133,8 @@ int main() {
         __delay_ms(5000);
         motor_stop(&motor_1);
         __delay_ms(5000);*/
-        
-        
-            
-        for(uint8 counter=0; counter <50;counter++){
+   
+        /*for(uint8 counter=0; counter <50;counter++){
             SVS_print_pov(&seven_seg, data);
             __delay_ms(15);
         
@@ -123,7 +158,7 @@ int main() {
         data[3]= (uint8)(min%10);
         
         data[4]= (uint8)(sec/10);
-        data[5]= (uint8)(sec%10);
+        data[5]= (uint8)(sec%10);*/
         
            /* for(uint8 counter = 0; counter<SVS_MAX_NO ; counter++){
                 data[counter]++;
@@ -133,7 +168,16 @@ int main() {
                 SVS_print_pov(&seven_seg, data);
                 
             }*/
-           
+        
+       
+        keypad_get_value(&keypad, &value);
+        if(value == values[0][0])
+            __delay_ms(700);
+        if(value == values[0][1])
+            __delay_ms(800);
+        if(value == values[0][2])
+            __delay_ms(2000);
+        value=0;
             
             
 
@@ -144,6 +188,7 @@ int main() {
 void appliction_intialize(void){
     ADCON0 = 0x00;
     ADCON1 = 0x0F;
+    keypad_initialize(&keypad);
     /*led_intialize(&led_0);
     led_intialize(&led_1);
     led_intialize(&led_2);
@@ -153,7 +198,7 @@ void appliction_intialize(void){
     relay_initialize(&relay_NO);
     
     motor_initialize(&motor_1);*/
-    SVS_initialize(&seven_seg);
+    /*SVS_initialize(&seven_seg);*/
     
     
 }
